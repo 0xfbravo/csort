@@ -64,14 +64,31 @@ void bubbleSort(int* list, int size) {
 }
 
 /**
+ * Executes the SelectionSort algorithm
+ * @param list
+ * @param size
+ */
+void selectionSort(int* list, int size) {
+	for (int i = 0; i < size-1; i++) {
+		int minimumIndex = i;
+		for (int j = i+1; j < size; j++) {
+			if (list[j] < list[minimumIndex]) {
+				minimumIndex = j;
+			}
+		}
+		swap(&list[minimumIndex], &list[i]);
+	}
+}
+
+/**
  * Executes the InsertionSort algorithm
  * @param list
  * @param size
  */
 void insertionSort(int* list, int size) {
-	int i, key, j;
-	for (i = 1; i < size; i++) {
-		key = list[i];
+	int j;
+	for (int i = 1; i < size; i++) {
+		int key = list[i];
 		j = i - 1;
 		while (j >= 0 && list[j] > key) {
 			list[j + 1] = list[j];
@@ -85,11 +102,11 @@ void insertionSort(int* list, int size) {
  * Sorts a list with N numbers,
  * and you can choose what sort algorithm should
  * be used according to algorithms list.
- * Check `algorithms`
+ * Check `algorithms` enum
  * @param list
  * @param size
- * @param mode
- * @return a new integer list according to specifications
+ * @param algorithm
+ * @return a sorted integer list
  */
 void sortIntList(int* list, int size, enum algorithm algorithm) {
 	switch (algorithm) {
@@ -98,6 +115,9 @@ void sortIntList(int* list, int size, enum algorithm algorithm) {
 			break;
 		case InsertionSort:
 			insertionSort(list, size);
+			break;
+		case SelectionSort:
+			selectionSort(list, size);
 			break;
 		default:
 			printAlgorithmError();

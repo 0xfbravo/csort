@@ -84,7 +84,7 @@ int* descendingIntList(int size) {
  * Using random value (mode: 0),
  * ascending values (mode: 1) or
  * descending values (mode: 2).
- * Check `listMode`
+ * Check `listMode` enum
  * @param mode
  * @param size
  * @return a new integer list according to specifications
