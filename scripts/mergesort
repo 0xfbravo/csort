@@ -1,0 +1,28 @@
+#!/bin/bash
+echo "Compilando executável para [InsertionSort]"
+cd ..
+make
+
+echo ":: Listas randômicas"
+./a.out 0 100 3
+./a.out 0 1000 3
+./a.out 0 10000 3
+./a.out 0 100000 3
+./a.out 0 1000000 3
+./a.out 0 10000000 3
+
+echo ":: Listas crescentes"
+./a.out 1 100 3
+./a.out 1 1000 3
+./a.out 1 10000 3
+./a.out 1 100000 3
+./a.out 1 1000000 3
+./a.out 1 10000000 3
+
+echo ":: Listas decrescentes"
+./a.out 2 100 3
+./a.out 2 1000 3
+./a.out 2 10000 3
+./a.out 2 100000 3
+./a.out 2 1000000 3
+./a.out 2 10000000 3

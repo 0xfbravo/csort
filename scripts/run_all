@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "Executando todos os algoritmos com todas as variações"
+./bubblesort
+./selectionsort
+./insertionsort
+./mergesort
+./quicksort_default
+./quicksort_qsort
