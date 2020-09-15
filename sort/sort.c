@@ -51,7 +51,7 @@ void swap(int *first, int *second) {
 /**
  * Executes the BubbleSort algorithm
  * @param list
- * @param n
+ * @param size
  */
 void bubbleSort(int* list, int size) {
 	for (int i = 0; i < size-1; i++) {
@@ -60,6 +60,24 @@ void bubbleSort(int* list, int size) {
 				swap(&list[j], &list[j + 1]);
 			}
 		}
+	}
+}
+
+/**
+ * Executes the InsertionSort algorithm
+ * @param list
+ * @param size
+ */
+void insertionSort(int* list, int size) {
+	int i, key, j;
+	for (i = 1; i < size; i++) {
+		key = list[i];
+		j = i - 1;
+		while (j >= 0 && list[j] > key) {
+			list[j + 1] = list[j];
+			j = j - 1;
+		}
+		list[j + 1] = key;
 	}
 }
 
@@ -77,6 +95,9 @@ void sortIntList(int* list, int size, enum algorithm algorithm) {
 	switch (algorithm) {
 		case BubbleSort:
 			bubbleSort(list, size);
+			break;
+		case InsertionSort:
+			insertionSort(list, size);
 			break;
 		default:
 			printAlgorithmError();
