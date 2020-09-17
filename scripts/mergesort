@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Compilando executável para [InsertionSort]"
+echo "Compilando executável para [MergeSort]"
 cd ..
 make
 

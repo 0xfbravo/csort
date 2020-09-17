@@ -86,16 +86,76 @@ void selectionSort(int* list, int size) {
  * @param size
  */
 void insertionSort(int* list, int size) {
-	int j;
 	for (int i = 1; i < size; i++) {
 		int key = list[i];
-		j = i - 1;
+		int j = i - 1;
 		while (j >= 0 && list[j] > key) {
 			list[j + 1] = list[j];
 			j = j - 1;
 		}
 		list[j + 1] = key;
 	}
+}
+
+/**
+ * Part of MergeSort algorithm to
+ * merge left and right sub-lists.
+ * @param list
+ * @param left
+ * @param leftCount
+ * @param right
+ * @param rightCount
+ */
+void merge(int* list, int* left, int leftCount, int* right, int rightCount) {
+	int i = 0;
+	int j = 0;
+	int k = 0;
+
+	while (i < leftCount && j < rightCount) {
+		if (left[i] < right[j]) {
+			list[k++] = left[i++];
+		}
+		else {
+			list[k++] = right[j++];
+		}
+	}
+
+	while (i < leftCount) {
+		list[k++] = left[i++];
+	}
+
+	while (j < rightCount){
+		list[k++] = right[j++];
+	}
+}
+
+/**
+ * Executes the MergeSort algorithm
+ * @param list
+ * @param size
+ */
+void mergeSort(int* list, int size) {
+	if(size < 2) {
+		return;
+	}
+
+	int half = size/2;
+	int* left = malloc(half * sizeof(int));
+	int* right = malloc((size - half) * sizeof(int));
+
+	for (int i = 0; i < half; i++) {
+		left[i] = list[i];
+	}
+
+	for (int i = half; i < size; i++) {
+		right[i-half] = list[i];
+	}
+
+	mergeSort(left, half);
+	mergeSort(right, size-half);
+	merge(list, left, half, right, size - half);
+	free(left);
+	free(right);
 }
 
 /**
@@ -118,6 +178,9 @@ void sortIntList(int* list, int size, enum algorithm algorithm) {
 			break;
 		case SelectionSort:
 			selectionSort(list, size);
+			break;
+		case MergeSort:
+			mergeSort(list, size);
 			break;
 		default:
 			printAlgorithmError();
