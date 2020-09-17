@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
 	char* algorithmString = getAlgorithmName(algorithm);
 
 	// List creation
-	printf("=== [Algoritmo: %s] Executando lista de tamanho [%d] - %s...\n", algorithmString, listSize, listModeString);
+	printf("[%s] Lista %s...\n", algorithmString, listModeString);
 	int* list = createIntList(listMode, listSize);
 
 	// Algorithm execution
