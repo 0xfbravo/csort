@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Script configuration
+size=100000
+listTypes=(0 1 2)
+algorithms=(0 1 2 3 4 5)
+
+echo "Compilando executável para todos os algoritmos"
+cd ..
+make
+
+for listType in "${listTypes[@]}"
+do
+  printf "===\n"
+  echo ":: Listas tipo $listType de tamanho $size"
+  for algorithm in "${algorithms[@]}"
+  do
+    ./a.out "$listType" "$size" "$algorithm"
+  done
+  printf "===\n\n"
+done
