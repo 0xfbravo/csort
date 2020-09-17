@@ -1,7 +1,18 @@
 cmake_minimum_required(VERSION 3.17)
-project(csort C)
+project(csort)
 
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS -O3)
 
-add_executable(csort main.c core/core.h sort/sort.h core/core.c sort/sort.c)
+include_directories(.)
+include_directories(core)
+include_directories(sort)
+
+add_executable(csort
+        core/core.c
+        core/core.h
+        sort/sort.c
+        sort/sort.h
+        LICENSE
+        main.c
+        README.md)

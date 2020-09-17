@@ -159,6 +159,54 @@ void mergeSort(int* list, int size) {
 }
 
 /**
+ * Part of QuickSort algorithm
+ * that handles pivot.
+ * @param list
+ * @param low
+ * @param high
+ * @return a new pivot
+ */
+int partition(int* list, int low, int high) {
+	int pivot = list[high];
+	int i = low - 1;
+
+	for (int j = low; j <= high - 1; j++) {
+		if (list[j] < pivot) {
+			i++;
+			swap(&list[i], &list[j]);
+		}
+	}
+	swap(&list[i + 1], &list[high]);
+	return i + 1;
+}
+
+/**
+ * Executes the QuickSort algorithm
+ * @param list
+ * @param low
+ * @param high
+ */
+void quickSort(int* list, int low, int high) {
+	if (low < high) {
+		int pivot = partition(list, low, high);
+		quickSort(list, low, pivot - 1);
+		quickSort(list, pivot + 1, high);
+	}
+}
+
+/**
+ * Receives two values to compare
+ * and will be executed by stdlib.h
+ * qsort.
+ * @param a
+ * @param b
+ * @return the difference between two values
+ */
+int compareQsort(const void * a, const void * b) {
+	return ( *(int*) a - *(int*) b );
+}
+
+/**
  * Sorts a list with N numbers,
  * and you can choose what sort algorithm should
  * be used according to algorithms list.
@@ -181,6 +229,12 @@ void sortIntList(int* list, int size, enum algorithm algorithm) {
 			break;
 		case MergeSort:
 			mergeSort(list, size);
+			break;
+		case QuickSortDefault:
+			quickSort(list, 0, size - 1);
+			break;
+		case QuickSortQSort:
+			qsort(list, size, sizeof(int), compareQsort);
 			break;
 		default:
 			printAlgorithmError();
